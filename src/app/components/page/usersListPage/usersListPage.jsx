@@ -6,16 +6,16 @@ import GroupList from '../../common/groupList'
 import SearchStatus from '../../ui/searchStatus'
 import UserTable from '../../ui/usersTable'
 import _ from 'lodash'
-import { useUser } from '../../../hooks/useUsers'
 import { useAuth } from '../../../hooks/useAuth'
 import { useSelector } from 'react-redux'
 import {
     getProfessions,
     getProfessionsLoadingStatus
 } from '../../../store/professions'
+import { getUsersList } from '../../../store/users'
 
 const UsersListPage = () => {
-    const { users } = useUser()
+    const users = useSelector(getUsersList())
     const { currentUser } = useAuth()
     const professions = useSelector(getProfessions())
     const professionsLoading = useSelector(getProfessionsLoadingStatus())
@@ -101,8 +101,7 @@ const UsersListPage = () => {
                         />
                         <button
                             className="btn btn-secondary mt-2"
-                            onClick={clearFilter}
-                        >
+                            onClick={clearFilter}>
                             {' '}
                             Очистить
                         </button>
